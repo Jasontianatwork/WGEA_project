@@ -30,7 +30,9 @@ cat("Reading input files...\n")
 sirca <- read.csv("si_au_ref_names.csv", stringsAsFactors = FALSE)
 secref <- read.csv("Reference_SecurityReference-2025-12-merged.csv",
                     stringsAsFactors = FALSE)
-master <- read.csv("MasterCompany.csv", stringsAsFactors = FALSE)
+# MasterCompany.csv contains non-UTF-8 characters; use latin1 encoding
+master <- read.csv("MasterCompany.csv", stringsAsFactors = FALSE,
+                    fileEncoding = "latin1")
 
 cat("  si_au_ref_names:    ", nrow(sirca), "rows x", ncol(sirca), "cols\n")
 cat("  SecurityReference:  ", nrow(secref), "rows x", ncol(secref), "cols\n")
